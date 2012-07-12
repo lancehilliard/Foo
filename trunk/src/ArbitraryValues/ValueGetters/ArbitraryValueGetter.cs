@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +6,7 @@ namespace ArbitraryValues.ValueGetters {
     internal static class ArbitraryValueGetter {
         public static object Get(Random random, Type type) {
             object result;
-            IArbitraryValueGetter arbitraryValueGetter = null;
+            IArbitraryValueGetter arbitraryValueGetter;
 
             //var typeIsEnumerable = type.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IEnumerable<>));
             var typeIsEnumerable = type.GetInterfaces().Any(x => x.Name.StartsWith("IEnumerable"));
@@ -34,6 +33,9 @@ namespace ArbitraryValues.ValueGetters {
                 else {
                     arbitraryValueGetter = new ShortArbitraryValueGetter(random);
                 }
+            }
+            else if (typeof(Uri).IsAssignableFrom(type)) {
+                arbitraryValueGetter = new UriArbitraryValueGetter(random);
             }
             else if (typeof(string).IsAssignableFrom(type)) {
                 arbitraryValueGetter = new StringArbitraryValueGetter(random);
@@ -96,31 +98,6 @@ namespace ArbitraryValues.ValueGetters {
 
         public static object Get<T>(Random random, IEnumerable<T> enumerable) {
             var result = new EnumerableArbitraryElementGetter(enumerable.Cast<object>().ToArray(), random).Get();
-            return result;
-        }
-    }
-
-    class EnumerableArbitraryValuesGetter<T> : RandomNumberCreator, IArbitraryValueGetter {
-        public EnumerableArbitraryValuesGetter(Random random) : base(random) { }
-
-        public object Get() {
-            var randomCount = CreateRandomNumber(20);
-            var result = Enumerable.Range(1, randomCount).Select(x => Foo.Get<T>()).ToList();
-            return result;
-        }
-    }
-      
-    class DictionaryArbitraryValuesGetter<DictKeyType, DictValueType> : RandomNumberCreator, IArbitraryValueGetter {
-        public DictionaryArbitraryValuesGetter(Random random) : base(random) { }
-
-        public object Get() {
-            var result = new Dictionary<DictKeyType, DictValueType>();
-            var randomCount = CreateRandomNumber(20);
-            var keys = Enumerable.Range(1, randomCount).Select(x => Foo.Get<DictKeyType>());
-            var values = Enumerable.Range(1, randomCount).Select(x => Foo.Get<DictValueType>());
-            for (int i = 0; i < randomCount; i++) {
-                result.Add(keys.ElementAt(i), values.ElementAt(i));
-            }
             return result;
         }
     }

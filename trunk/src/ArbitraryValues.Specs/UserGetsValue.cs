@@ -14,6 +14,15 @@ namespace ArbitraryValues.Specs {
     }
 
     [Subject(Stories.UserGetsValue)]
+    public class when_type_is_Uri : ScenarioObjects<Uri> {
+        Establish context = () => { };
+
+        Because action = () => { Result = Foo.Get<Uri>(); };
+
+        It should_return_a_Uri = () => Result.ShouldBeOfType<Uri>();
+    }
+
+    [Subject(Stories.UserGetsValue)]
     public class when_type_is_nullable : ScenarioObjects<int?> {
         Establish context = () => { };
 
