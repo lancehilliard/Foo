@@ -6,18 +6,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArbitraryValues.Specs", "ArbitraryValues.Specs\ArbitraryValues.Specs.csproj", "{84694DB9-7DBD-4AD9-A1CC-CE5052A5B764}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs06
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ArbitraryValues.Specs\\ArbitraryValues.Specs.csproj
-		SccProjectName1 = ArbitraryValues.Specs
-		SccLocalPath1 = ArbitraryValues.Specs
-		SccProjectUniqueName2 = ArbitraryValues\\ArbitraryValues.csproj
-		SccProjectName2 = ArbitraryValues
-		SccLocalPath2 = ArbitraryValues
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
