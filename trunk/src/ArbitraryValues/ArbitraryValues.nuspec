@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- Compile the ArbitraryValues project in Release mode FIRST, then: NuGet.exe pack ArbitraryValues.csproj -Prop Configuration=Release -->
+<package >
+  <metadata>
+    <id>Foo</id>
+    <version>$version$</version>
+    <title>Foo</title>
+    <authors>Lance Hilliard, Kevin Kemp, John Fleenor</authors>
+    <owners>Lance Hilliard</owners>
+    <projectUrl>http://foo.codeplex.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Foo creates values for your test class variables so that you can write tests faster.
+    </description>
+    <releaseNotes>Added more helpful error messages when generating arbitrary values.</releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <tags></tags>
+  </metadata>
+</package>

@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArbitraryValues", "ArbitraryValues\ArbitraryValues.csproj", "{D9EE493E-8BC1-44CE-A406-645D68716447}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArbitraryValues.Specs", "ArbitraryValues.Specs\ArbitraryValues.Specs.csproj", "{84694DB9-7DBD-4AD9-A1CC-CE5052A5B764}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs06
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ArbitraryValues.Specs\\ArbitraryValues.Specs.csproj
+		SccProjectName1 = ArbitraryValues.Specs
+		SccLocalPath1 = ArbitraryValues.Specs
+		SccProjectUniqueName2 = ArbitraryValues\\ArbitraryValues.csproj
+		SccProjectName2 = ArbitraryValues
+		SccLocalPath2 = ArbitraryValues
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9EE493E-8BC1-44CE-A406-645D68716447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9EE493E-8BC1-44CE-A406-645D68716447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9EE493E-8BC1-44CE-A406-645D68716447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9EE493E-8BC1-44CE-A406-645D68716447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84694DB9-7DBD-4AD9-A1CC-CE5052A5B764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84694DB9-7DBD-4AD9-A1CC-CE5052A5B764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84694DB9-7DBD-4AD9-A1CC-CE5052A5B764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84694DB9-7DBD-4AD9-A1CC-CE5052A5B764}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
