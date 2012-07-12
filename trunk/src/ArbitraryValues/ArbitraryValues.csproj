@@ -59,10 +59,12 @@
     <Compile Include="ValueGetters\ByteArbitraryValueGetter.cs" />
     <Compile Include="ValueGetters\DateTimeArbitraryValueGetter.cs" />
     <Compile Include="ValueGetters\DecimalArbitraryValueGetter.cs" />
+    <Compile Include="ValueGetters\DictionaryArbitraryValuesGetter.cs" />
     <Compile Include="ValueGetters\EnumArbitraryValueGetter.cs" />
     <Compile Include="ValueGetters\EnumerableArbitraryElementGetter.cs" />
     <Compile Include="Foo.cs" />
     <Compile Include="ValueGetters\ComplexTypeArbitraryValueGetter.cs" />
+    <Compile Include="ValueGetters\EnumerableArbitraryValuesGetter.cs" />
     <Compile Include="ValueGetters\IArbitraryValueGetter.cs" />
     <Compile Include="ValueGetters\NonStaticPublicFieldsGetter.cs" />
     <Compile Include="ValueGetters\NullableTypeGetter.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="ValueGetters\SByteArbitraryValueGetter.cs" />
     <Compile Include="ValueGetters\ShortArbitraryValueGetter.cs" />
     <Compile Include="ValueGetters\StringArbitraryValueGetter.cs" />
+    <Compile Include="ValueGetters\UriArbitraryValueGetter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
