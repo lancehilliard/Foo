@@ -21,10 +21,10 @@ Foo was created by a group of developers who needed named value variables for us
 
 Sometimes your test needs a value whose name is important and whose value is not. Foo is a good fit for this situation. Store an arbitrary value into this variable easily. The value is determined at runtime, so you'll know your test's passing status isn't dependent on the variable's value.
 
-`
+```
   int clientNumberValue = Foo.Get<int>();
   IEnumerable<int> clientNumbersValue = Foo.Get<IEnumerable<int>>();
-`
+```
 
 ## Getting an arbitrary element from a given enumerable...
 
