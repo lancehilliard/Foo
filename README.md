@@ -30,22 +30,22 @@ Sometimes your test needs a value whose name is important and whose value is not
 
 If you already have an enumerable of values, and you need an arbitrary element from that enumerable, Foo can help.
 
-`
+```c#
   var color = Foo.GetFrom(new List<string> { "red", "blue", "green" });
-`
+```
 
 ## Providing arbitrary values for your test classes...
 
 Another method on Foo, AssignArbitraryValues<T>(), is particularly useful if you're writing machine.specification tests, as it will quickly and easily assign arbitrary values to every variable used for storing arbitrary values needed by your tests. If you keep all of those variables in a parent class, they can all be assigned in one call:
 
-`
+```c#
   Foo.AssignArbitraryValues<TestsBase>();
-`
+```
 
 ## Instantiating fakes for your test classes...
 
 If your tests use Fakes, and they're also defined in that parent class, you can instantiate all of them in one call using, for example, Rhino Mocks:
 
-`
+```c#
   Foo.AssignFakes<TestsBase>(FakeMaker<MockRepository>.Make);
-`
+```
