@@ -15,8 +15,7 @@ namespace ArbitraryValues.Specs
     /**
      * The purpose of Scenario Objects is to provide a place to create Fakes,DeliberateValues,ArbitraryValues and SystemsUnderTest 
      * to remove redundant and repetitive object from Specifications.
-     * The Establish will be ran before each specification
-     * 
+     * The Establish will be ran before each specification     * 
      */
     public class ScenarioObjects
     {
