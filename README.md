@@ -11,7 +11,7 @@ You can install Foo using [NuGet](http://nuget.org/packages/Foo):
 
 Foo creates values for your test class variables so that you can write tests faster.
 
-The values are not random; they're arbitrary. Use Foo when you need a value and don't care what it is. This is particularly useful when you're writing interaction tests, for example using machine.specifications.
+The values are not random; they're arbitrary. Use Foo when you need a value and don't care what it is. This is particularly useful when you're writing interaction tests, for example using machine.specifications. Because Foo's values are arbitrary, they're not well suited for state-based tests.
 
 ## What is Foo and when should I use it?
 
