@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-<!-- Compile the ArbitraryValues project in Release mode FIRST, then: NuGet.exe pack ArbitraryValues.csproj -Prop Configuration=Release -->
 <package >
   <metadata>
     <id>Foo</id>
@@ -12,7 +11,7 @@
     <description>
       Foo creates values for your test class variables so that you can write tests faster.
     </description>
-    <releaseNotes>Added arbitrary value support for Uri type.</releaseNotes>
+    <releaseNotes>Added fakes-creating support for Moq, FakeItEasy, and NSubstitute.</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags></tags>
   </metadata>
