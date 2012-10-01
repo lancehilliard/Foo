@@ -243,7 +243,7 @@ namespace ArbitraryValues.Specs {
     [Subject(Stories.UserGetsValue)]
     public class when_type_is_trained : ScenarioObjects<ExampleNoCallableConstructorType> {
         Establish context = () => {
-            Foo.AddBuilder(() => ExampleNoCallableConstructorType.Instance);
+            Foo.AddBuilder(random => ExampleNoCallableConstructorType.Instance);
         };
 
         Because action = () => Result = Foo.Get<ExampleNoCallableConstructorType>();
@@ -254,12 +254,12 @@ namespace ArbitraryValues.Specs {
     [Subject(Stories.UserGetsValue)]
     public class when_type_is_trained_twice : ScenarioObjects<Exception> {
         Establish context = () => {
-            Foo.AddBuilder(Foo.Get<int>);
+            Foo.AddBuilder(random => string.Empty);
         };
 
-        Because action = () => Result = Catch.Exception(() => Foo.AddBuilder(Foo.Get<int>));
+        Because action = () => Result = Catch.Exception(() => Foo.AddBuilder(random => string.Empty));
 
-        It should_return_an_error_explaining_that_type_cannot_be_added_twice = () => Result.Message.ShouldEqual(Messages.BuilderAlreadyAddedForType(typeof(int)));
+        It should_return_an_error_explaining_that_type_cannot_be_added_twice = () => Result.Message.ShouldEqual(Messages.BuilderAlreadyAddedForType(typeof(string)));
     }
 
     [Subject(Stories.UserGetsValue)]

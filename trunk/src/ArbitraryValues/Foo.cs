@@ -7,8 +7,8 @@ using ArbitraryValues.ValueGetters;
 namespace ArbitraryValues {
     public class BuilderData {
         public Type OutputType { get; private set; }
-        public Func<object> Builder { get; private set; }
-        public BuilderData(Type outputType, Func<object> builder) {
+        public Func<Random, object> Builder { get; private set; }
+        public BuilderData(Type outputType, Func<Random, object> builder) {
             OutputType = outputType;
             Builder = builder;
         }
@@ -38,7 +38,7 @@ namespace ArbitraryValues {
                 }
                 else {
                     var builderData = Builders.FirstOrDefault(x => x.OutputType.Equals(type));
-                    var value = Equals(builderData, default(BuilderData)) ? ArbitraryValueGetter.Get(Random, type) : builderData.Builder();
+                    var value = Equals(builderData, default(BuilderData)) ? ArbitraryValueGetter.Get(Random, type) : builderData.Builder(Random);
                     try {
                         result = (T)value;
                     }
@@ -120,12 +120,12 @@ namespace ArbitraryValues {
             Builders.Clear();
         }
 
-        public static void AddBuilder<T>(Func<T> builder) {
+        public static void AddBuilder<T>(Func<Random, T> builder) {
             var type = typeof(T);
             if (Builders.Any(x => x.OutputType.Equals(type))) {
                 throw new Exception(Messages.BuilderAlreadyAddedForType(type));
             }
-            Builders.Add(new BuilderData(type, () => (object)builder()));
+            Builders.Add(new BuilderData(type, random => (object)builder(random)));
         }
     }
 }
