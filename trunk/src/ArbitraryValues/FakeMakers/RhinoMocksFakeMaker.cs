@@ -3,11 +3,11 @@ using System.Linq;
 using System.Reflection;
 
 namespace ArbitraryValues.FakeMakers {
-    class MockRepositoryFakeMaker : IFakeMaker {
+    class RhinoMocksFakeMaker : IFakeMaker {
         readonly MethodInfo _generateMockMethodInfo;
         readonly object[] _generateMockMethodInfoArguments = new object[] { null };
 
-        public MockRepositoryFakeMaker(Type mockRepositoryType) {
+        public RhinoMocksFakeMaker(Type mockRepositoryType) {
             _generateMockMethodInfo = mockRepositoryType.GetMethods(BindingFlags.Public | BindingFlags.Static).First(x => x.Name.Equals("GenerateMock"));
         }
 
