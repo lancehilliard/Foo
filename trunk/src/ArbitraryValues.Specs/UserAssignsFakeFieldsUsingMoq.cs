@@ -10,7 +10,7 @@ namespace ArbitraryValues.Specs {
         Establish context = () => {
         };
 
-        Because action = () => Foo.AssignFakes<when_setting_fake_fields_using_moq>(FakeMaker<Mock>.Make);
+        Because action = () => Foo.AssignFakes<when_setting_fake_fields_using_moq>(FakeMaker.MakeMoqFake);
 
         It should_set_field_values = () => DisposableFake.ShouldBeOfType<Mock<IDisposable>>();
 

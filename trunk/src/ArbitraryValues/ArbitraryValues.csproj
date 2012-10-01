@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultNamingScheme.cs" />
+    <Compile Include="FakeMakers\FakeItEasyFakeMaker.cs" />
+    <Compile Include="FakeMakers\NSubstituteFakeMaker.cs" />
     <Compile Include="FakeMakers\RhinoMocksFakeMaker.cs" />
     <Compile Include="FakeMakers\FakeMaker.cs" />
     <Compile Include="FakeMakers\MoqFakeMaker.cs" />

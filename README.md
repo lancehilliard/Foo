@@ -15,7 +15,7 @@ The values are not random; they're arbitrary. Use Foo when you need a value and 
 
 ## What is Foo and when should I use it?
 
-Foo was created by a group of developers who needed named value variables for use by their interaction test classes. It's most useful if you're using machine.specifications and Rhino Mocks (or Moq), but you may find some of its offerings useful if you're using different testing frameworks. Foo is used by [ScenarioObjects](https://github.com/lancehilliard/ScenarioObjects), a test-authoring accelerator that may also interest you if you're using machine.specifications.
+Foo was created by a group of developers who needed named value variables for use by their interaction test classes. It's most useful if you're using machine.specifications and Rhino Mocks (or Moq, or FakeItEasy, or NSubstitute), but you may find some of its offerings useful if you're using different testing frameworks. Foo is used by [ScenarioObjects](https://github.com/lancehilliard/ScenarioObjects), a test-authoring accelerator that may also interest you if you're using machine.specifications.
 
 ## Getting a single arbitrary value of a certain type...
 
@@ -48,10 +48,20 @@ If your tests use Fakes, and they're also defined in that parent class, you can 
 
 ### Rhino Mocks
 ```c#
-  Foo.AssignFakes<TestsBase>(FakeMaker<MockRepository>.Make);
+  Foo.AssignFakes<TestsBase>(FakeMaker.MakeRhinoMocksFake);
 ```
 
 ### Moq
 ```c#
-  Foo.AssignFakes<TestsBase>(FakeMaker<Mock>.Make);
+  Foo.AssignFakes<TestsBase>(FakeMaker<Mock>.MakeMoqFake);
+```
+
+### FakeItEasy
+```c#
+  Foo.AssignFakes<TestsBase>(FakeMaker<Mock>.MakeFakeItEasyFake);
+```
+
+### NSubstitute
+```c#
+  Foo.AssignFakes<TestsBase>(FakeMaker<Mock>.MakeNSubstituteFake);
 ```

@@ -36,7 +36,7 @@ namespace ArbitraryValues.Specs
 
         static void AssignFakes()
         {
-            Foo.AssignFakes<ScenarioObjects>(FakeMaker<MockRepository>.Make);
+            Foo.AssignFakes<ScenarioObjects>(FakeMaker.MakeRhinoMocksFake);
         }
 
         static void AssignArbitraryValues()

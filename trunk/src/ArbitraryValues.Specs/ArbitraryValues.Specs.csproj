@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.1.0\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\packages\FakeItEasy.1.7.4626.65\lib\NET40\FakeItEasy.dll</HintPath>
+    </Reference>
     <Reference Include="Machine.Specifications">
       <HintPath>..\packages\Machine.Specifications.0.5.6.0\lib\net40\Machine.Specifications.dll</HintPath>
     </Reference>
@@ -47,6 +53,9 @@
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.4.3.0\lib\NET40\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
@@ -62,7 +71,9 @@
   <ItemGroup>
     <Compile Include="ScenarioObjects.cs" />
     <Compile Include="Stories.cs" />
-    <Compile Include="UserAssignsFakeFields.cs" />
+    <Compile Include="UserAssignsFakeFieldsUsingFakeItEasy.cs" />
+    <Compile Include="UserAssignsFakeFieldsUsingNSubstitute.cs" />
+    <Compile Include="UserAssignsFakeFieldsUsingRhinoMocks.cs" />
     <Compile Include="UserAssignsFakeFieldsUsingMoq.cs" />
     <Compile Include="UserAssignsValueFields.cs" />
     <Compile Include="UserGetsElement.cs" />
