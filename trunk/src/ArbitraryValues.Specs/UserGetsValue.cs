@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 using Machine.Specifications;
 
 namespace ArbitraryValues.Specs {
@@ -183,6 +184,15 @@ namespace ArbitraryValues.Specs {
         Because action = () => { Result = Foo.Get<DateTime>(); };
 
         It should_return_a_datetime = () => Result.ShouldBeOfType<DateTime>();
+    }
+
+    [Subject(Stories.UserGetsValue)]
+    public class when_type_derives_from_ienumerable : ScenarioObjects<XmlDocument> {
+        Establish context = () => { };
+
+        Because action = () => { Result = Foo.Get<XmlDocument>(); };
+
+        It should_return_an_xmldocument = () => Result.ShouldBeOfType<XmlDocument>();
     }
 
     [Subject(Stories.UserGetsValue)]

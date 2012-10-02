@@ -11,7 +11,7 @@
     <description>
       Foo creates values for your test class variables so that you can write tests faster.
     </description>
-    <releaseNotes>Added random input to Builder signature.</releaseNotes>
+    <releaseNotes>Improved support for IEnumerable types.</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags></tags>
   </metadata>

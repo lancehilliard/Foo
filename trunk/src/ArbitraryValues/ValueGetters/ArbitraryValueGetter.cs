@@ -6,7 +6,7 @@ namespace ArbitraryValues.ValueGetters {
     internal static class ArbitraryValueGetter {
         public static object Get(Random random, Type type) {
             object result;
-            IArbitraryValueGetter arbitraryValueGetter;
+            IArbitraryValueGetter arbitraryValueGetter = null;
 
             //var typeIsEnumerable = type.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IEnumerable<>));
             var typeIsEnumerable = type.GetInterfaces().Any(x => x.Name.StartsWith("IEnumerable"));
@@ -62,12 +62,12 @@ namespace ArbitraryValues.ValueGetters {
                         var constructedClass = enumerableArbitraryValuesGetter.MakeGenericType(enumerableType);
                         arbitraryValueGetter = (IArbitraryValueGetter)Activator.CreateInstance(constructedClass, new object[] { random });
                     }
-                    else {
+                    else if (genericArguments.Length > 1) {
                         throw new Exception(string.Format("Type '{0}' looked like IEnumerable, but it had '{1}' generic arguments!", type.FullName, genericArguments.Length));
                     }
                 }
             }
-            else {
+            if (arbitraryValueGetter == null) {
                 arbitraryValueGetter = new ComplexTypeArbitraryValueGetter(random, type);
             }
             try {
@@ -88,7 +88,7 @@ namespace ArbitraryValues.ValueGetters {
                     }
                     childType = types.FirstOrDefault(x => type.IsAssignableFrom(x) && !x.IsAbstract && !x.IsGenericTypeDefinition && !x.IsInterface);
                 }
-                if (childType == default(Type)) {
+                if (childType == null) {
                     throw new Exception(Messages.NoKnownChildTypes(type), exception);
                 }
                 result = Get(random, childType);

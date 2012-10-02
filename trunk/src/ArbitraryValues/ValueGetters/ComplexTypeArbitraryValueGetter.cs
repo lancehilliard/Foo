@@ -13,7 +13,8 @@ namespace ArbitraryValues.ValueGetters {
         }
 
         public object Get() {
-            var constructor = _type.GetConstructors().FirstOrDefault();
+            var constructors = _type.GetConstructors();
+            var constructor = constructors.FirstOrDefault(x => x.GetParameters().Count().Equals(constructors.Min(y => y.GetParameters().Count())));
 
             if (Equals(constructor, default(ConstructorInfo))) {
                 throw new Exception(Messages.NoUsableConstructorFound(_type));
@@ -27,7 +28,14 @@ namespace ArbitraryValues.ValueGetters {
             catch (Exception e) {
                 throw new Exception("Unable to create instance with constructor types: " + string.Join(",", constructorParameterValues.Select(x => x.GetType())), e);
             }
-            _type.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CanWrite).ToList().ForEach(x => x.SetValue(result, ArbitraryValueGetter.Get(_random, x.PropertyType), null));
+            _type.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CanWrite).ToList().ForEach(x => {
+                try {
+                    x.SetValue(result, ArbitraryValueGetter.Get(_random, x.PropertyType), null);
+                }
+                catch (Exception e) {
+                    // todo mlh what to do when there's a problem setting one of the property values on the newly created object?
+                }
+            });
             return result;
         }
     }
