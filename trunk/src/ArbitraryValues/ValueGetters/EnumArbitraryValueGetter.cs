@@ -4,7 +4,8 @@ namespace ArbitraryValues.ValueGetters {
     class EnumArbitraryValueGetter : RandomNumberCreator, IArbitraryValueGetter {
         readonly Type _enumType;
 
-        public EnumArbitraryValueGetter(Random random, Type enumType) : base(random) {
+        public EnumArbitraryValueGetter(Random random, Type enumType)
+            : base(random) {
             _enumType = enumType;
         }
 

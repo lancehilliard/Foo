@@ -3,7 +3,7 @@
 namespace ArbitraryValues {
     public static class Messages {
          public static string NoUsableConstructorFound(Type type) {
-             var result = string.Format("No usable constructor found for type: '{0}'", type.FullName);
+             var result = string.Format("No usable constructor found for type: '{0}'. {1}", type.FullName, GetTypeBuilderRecommendationAdvisory());
              return result;
          }
 
@@ -13,13 +13,17 @@ namespace ArbitraryValues {
         }
 
         public static string FailedToGetValueForType(Type type) {
-            var result = string.Format("Failed to get value for type '{0}'.", type.FullName);
+            var result = string.Format("Failed to get value for type '{0}'. {1}", type.FullName, GetTypeBuilderRecommendationAdvisory());
             return result;
         }
 
         public static string NoKnownChildTypes(Type type) {
             var result = string.Format("No known child type for type '{0}'.", type.FullName);
             return result;
+        }
+
+        static string GetTypeBuilderRecommendationAdvisory() {
+            return "Consider adding a Builder to handle this type.";
         }
     }
 }

@@ -8,10 +8,12 @@ namespace ArbitraryValues.ValueGetters {
             object result;
             IArbitraryValueGetter arbitraryValueGetter = null;
 
-            //var typeIsEnumerable = type.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IEnumerable<>));
             var typeIsEnumerable = type.GetInterfaces().Any(x => x.Name.StartsWith("IEnumerable"));
 
-            if (type.IsValueType) {
+            if (type.Name.Equals("Lazy`1")) {
+                arbitraryValueGetter = new LazyArbitraryValueGetter(random, type.GetGenericArguments().First());
+            }
+            else if (type.IsValueType) {
                 if (type.IsEnum) {
                     arbitraryValueGetter = new EnumArbitraryValueGetter(random, type);
                 }

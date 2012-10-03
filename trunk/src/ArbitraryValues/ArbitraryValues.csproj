@@ -69,6 +69,7 @@
     <Compile Include="ValueGetters\ComplexTypeArbitraryValueGetter.cs" />
     <Compile Include="ValueGetters\EnumerableArbitraryValuesGetter.cs" />
     <Compile Include="ValueGetters\IArbitraryValueGetter.cs" />
+    <Compile Include="ValueGetters\LazyArbitraryValueGetter.cs" />
     <Compile Include="ValueGetters\NonStaticPublicFieldsGetter.cs" />
     <Compile Include="ValueGetters\NullableTypeGetter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,7 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Xml;
 using Machine.Specifications;
 
@@ -151,6 +148,15 @@ namespace ArbitraryValues.Specs {
     }
 
     [Subject(Stories.UserGetsValue)]
+    public class when_type_is_lazy : ScenarioObjects<Lazy<int>> {
+        Establish context = () => { };
+
+        Because action = () => { Result = Foo.Get<Lazy<int>>(); };
+
+        It should_return_a_lazy_result_whose_value_is_nondefault = () => Result.Value.ShouldNotEqual(default(int));
+    }
+
+    [Subject(Stories.UserGetsValue)]
     public class when_type_is_ushort : ScenarioObjects<ushort> {
         Establish context = () => { };
 
@@ -204,29 +210,31 @@ namespace ArbitraryValues.Specs {
         It should_return_a_object = () => Result.ShouldBeOfType<object>();
     }
 
-    [Subject(Stories.UserGetsValue)]
-    public class when_type_is_eventArg : ScenarioObjects<ExampleEventArg>
-    {
-        Establish context = () => { };
+    // todo mlh consider removing forever the feature which hydrates properties of Foo-instantiated Value fields
+    //[Subject(Stories.UserGetsValue)]
+    //public class when_type_is_eventArg : ScenarioObjects<ExampleEventArg>
+    //{
+    //    Establish context = () => { };
 
-        Because action = () => { Result = Foo.Get<ExampleEventArg>(); };
+    //    Because action = () => { Result = Foo.Get<ExampleEventArg>(); };
 
-        It should_return_a_eventArg = () => Result.ShouldBeOfType<ExampleEventArg>();
+    //    It should_return_a_eventArg = () => Result.ShouldBeOfType<ExampleEventArg>();
 
-        It should_return_a_eventArg_with_non_null_a = () => Result.a.ShouldNotBeNull();
-    }
+    //    It should_return_a_eventArg_with_non_null_a = () => Result.a.ShouldNotBeNull();
+    //}
 
-    [Subject(Stories.UserGetsValue)]
-    public class when_type_is_eventArg_with_value_constructor : ScenarioObjects<ExampleValueTypeConstructorEventArg>
-    {
-        Establish context = () => { };
+    // todo mlh consider removing forever the feature which hydrates properties of Foo-instantiated Value fields
+    //[Subject(Stories.UserGetsValue)]
+    //public class when_type_is_eventArg_with_value_constructor : ScenarioObjects<ExampleValueTypeConstructorEventArg>
+    //{
+    //    Establish context = () => { };
 
-        Because action = () => { Result = Foo.Get<ExampleValueTypeConstructorEventArg>(); };
+    //    Because action = () => { Result = Foo.Get<ExampleValueTypeConstructorEventArg>(); };
 
-        It should_return_a_eventArg = () => Result.ShouldBeOfType<ExampleValueTypeConstructorEventArg>();
+    //    It should_return_a_eventArg = () => Result.ShouldBeOfType<ExampleValueTypeConstructorEventArg>();
 
-        It should_return_a_eventArg_with_non_null_a = () => Result.a.ShouldNotBeNull();
-    }
+    //    It should_return_a_eventArg_with_non_null_a = () => Result.a.ShouldNotBeNull();
+    //}
 
     [Subject(Stories.UserGetsValue)]
     public class when_type_is_eventArg_with_non_value_constructor : ScenarioObjects<ExampleNonValueTypeConstructorEventArg> {
