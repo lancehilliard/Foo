@@ -37,7 +37,7 @@ namespace ArbitraryValues.Perf {
 
             Console.WriteLine("ArbitraryValues Performance");
             Console.WriteLine("");
-            //ReportOnDurations(fakesDurations);
+            ReportOnDurations(fakesDurations);
             ReportOnDurations(typeDurations);
             ReportOnDurations(lazyDurations);
             stopwatch.Stop();
