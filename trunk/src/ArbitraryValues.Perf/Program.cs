@@ -12,37 +12,36 @@ namespace ArbitraryValues.Perf {
         static void Main(string[] args) {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            var mocksCount = 100;
-            var fakesDurations = new List<DurationData>();
-            fakesDurations.Add(DurationGetter.Get("Rhino Mocks", mocksCount, () => Foo.AssignFakes<SimpleFakes>(FakeMaker.MakeRhinoMocksFake)));
-            fakesDurations.Add(DurationGetter.Get("Moq        ", mocksCount, () => Foo.AssignFakes<MoqFakes>(FakeMaker.MakeMoqFake)));
-            fakesDurations.Add(DurationGetter.Get("NSubstitute", mocksCount, () => Foo.AssignFakes<SimpleFakes>(FakeMaker.MakeNSubstituteFake)));
-            fakesDurations.Add(DurationGetter.Get("FakeItEasy ", mocksCount, () => Foo.AssignFakes<SimpleFakes>(FakeMaker.MakeFakeItEasyFake)));
+            var count = 20;
 
-            var typesCount = 100;
+            //var fakesDurations = new List<DurationData>();
+            //fakesDurations.Add(DurationGetter.Get("Rhino Mocks", count, () => Foo.AssignFakes<SimpleFakes>(FakeMaker.MakeRhinoMocksFake)));
+            //fakesDurations.Add(DurationGetter.Get("Moq        ", count, () => Foo.AssignFakes<MoqFakes>(FakeMaker.MakeMoqFake)));
+            //fakesDurations.Add(DurationGetter.Get("NSubstitute", count, () => Foo.AssignFakes<SimpleFakes>(FakeMaker.MakeNSubstituteFake)));
+            //fakesDurations.Add(DurationGetter.Get("FakeItEasy ", count, () => Foo.AssignFakes<SimpleFakes>(FakeMaker.MakeFakeItEasyFake)));
+
             var typeDurations = new List<DurationData>();
-            typeDurations.Add(DurationGetter.Get("XmlDocument", typesCount, () => Foo.Get<XmlDocument>()));
-            typeDurations.Add(DurationGetter.Get("double     ", typesCount, () => Foo.Get<double>()));
-            typeDurations.Add(DurationGetter.Get("int        ", typesCount, () => Foo.Get<int>()));
-            typeDurations.Add(DurationGetter.Get("float      ", typesCount, () => Foo.Get<float>()));
-            typeDurations.Add(DurationGetter.Get("Exception  ", typesCount, () => Foo.Get<Exception>()));
+            typeDurations.Add(DurationGetter.Get("Foo.Get<XmlDocument>()", count, () => Foo.Get<XmlDocument>()));
+            typeDurations.Add(DurationGetter.Get("Foo.Get<double>()     ", count, () => Foo.Get<double>()));
+            typeDurations.Add(DurationGetter.Get("Foo.Get<int>()        ", count, () => Foo.Get<int>()));
+            typeDurations.Add(DurationGetter.Get("Foo.Get<float>()      ", count, () => Foo.Get<float>()));
+            typeDurations.Add(DurationGetter.Get("Foo.Get<Exception>()  ", count, () => Foo.Get<Exception>()));
 
-            var lazysCount = 100;
             var lazyDurations = new List<DurationData>();
-            lazyDurations.Add(DurationGetter.Get("Lazy<XmlDocument>", lazysCount, () => Foo.Get<Lazy<XmlDocument>>()));
-            lazyDurations.Add(DurationGetter.Get("Lazy<double>     ", lazysCount, () => Foo.Get<Lazy<double>>()));
-            lazyDurations.Add(DurationGetter.Get("Lazy<int>        ", lazysCount, () => Foo.Get<Lazy<int>>()));
-            lazyDurations.Add(DurationGetter.Get("Lazy<float>      ", lazysCount, () => Foo.Get<Lazy<float>>()));
-            lazyDurations.Add(DurationGetter.Get("Lazy<Exception>  ", lazysCount, () => Foo.Get<Lazy<Exception>>()));
+            lazyDurations.Add(DurationGetter.Get("Foo.Get<Lazy<XmlDocument>>()", count, () => Foo.Get<Lazy<XmlDocument>>()));
+            lazyDurations.Add(DurationGetter.Get("Foo.Get<Lazy<double>>()     ", count, () => Foo.Get<Lazy<double>>()));
+            lazyDurations.Add(DurationGetter.Get("Foo.Get<Lazy<int>>()        ", count, () => Foo.Get<Lazy<int>>()));
+            lazyDurations.Add(DurationGetter.Get("Foo.Get<Lazy<float>>()      ", count, () => Foo.Get<Lazy<float>>()));
+            lazyDurations.Add(DurationGetter.Get("Foo.Get<Lazy<Exception>>()  ", count, () => Foo.Get<Lazy<Exception>>()));
 
             Console.WriteLine("ArbitraryValues Performance");
             Console.WriteLine("");
-            ReportOnDurations(fakesDurations);
+            //ReportOnDurations(fakesDurations);
             ReportOnDurations(typeDurations);
             ReportOnDurations(lazyDurations);
             stopwatch.Stop();
-            Console.WriteLine("Press enter to exit... (Total running time: roughly {0} seconds", Math.Floor(stopwatch.Elapsed.TotalSeconds));
-            Console.ReadLine();
+            Console.WriteLine("Press any key to exit... (Total running time: roughly {0}s)", Math.Ceiling(stopwatch.Elapsed.TotalSeconds));
+            Console.ReadKey();
         }
 
         static void ReportOnDurations(List<DurationData> durations) {
@@ -53,7 +52,7 @@ namespace ArbitraryValues.Perf {
 
             var whitespace = new string(' ', durations.Max(x => x.Title.Length) + durations.Max(x => x.Duration.TotalMilliseconds.ToString().Length));
             var totalTimeSpan = new TimeSpan(durations.Sum(x => x.Duration.Ticks));
-            var averageTimeSpan = new TimeSpan(durations.Sum(x => x.Duration.Ticks)/2);
+            //var averageTimeSpan = new TimeSpan(durations.Sum(x => x.Duration.Ticks)/2);
             //Console.WriteLine("{0}{1} ({2} Avg)", whitespace, FormatTimeSpan(totalTimeSpan), FormatTimeSpan(averageTimeSpan));
             Console.WriteLine("{0}({1} Total)", whitespace, FormatTimeSpan(totalTimeSpan));
             Console.WriteLine("");
@@ -64,7 +63,7 @@ namespace ArbitraryValues.Perf {
         }
 
         static string FormatTimeSpan(TimeSpan timeSpan) {
-            var result = string.Format("{0}ms", Math.Floor(timeSpan.TotalMilliseconds));
+            var result = string.Format("{0}ms", timeSpan.TotalMilliseconds);
             return result;
         }
     }
