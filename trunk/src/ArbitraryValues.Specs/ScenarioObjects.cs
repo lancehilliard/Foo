@@ -19,6 +19,7 @@ namespace ArbitraryValues.Specs
      */
     public class ScenarioObjects
     {
+        static IAssignmentReport _assignmentReport;
         //buys us some time by only setting these up once
         static ScenarioObjects()
         {
@@ -41,8 +42,12 @@ namespace ArbitraryValues.Specs
 
         static void AssignArbitraryValues()
         {
-            Foo.AssignArbitraryValues<ScenarioObjects>();
+            _assignmentReport = Foo.AssignArbitraryValues<ScenarioObjects>();
         }
+        
+        Cleanup cleanup = () => _assignmentReport.PrintValues();
+
+        protected static string StringValue;
 
         static void AssignSystemsUnderTest() { }
     }

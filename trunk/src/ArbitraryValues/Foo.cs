@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using ArbitraryValues.ValueGetters;
@@ -58,17 +59,29 @@ namespace ArbitraryValues {
             return result;
         }
 
-        static void AssignArbitraryValues(Type type, String suffix) {
+        static IDictionary<string, object> AssignArbitraryValues(Type type, String suffix) {
+            var result = new Dictionary<string, object>();
             var fieldInfos = StaticNonPublicFieldsGetter.Get(type).Where(x => x.Name.EndsWith(suffix));
-            fieldInfos.ToList().ForEach(x => x.SetValue(null, GetMethodInfo.MakeGenericMethod(x.FieldType).Invoke(null, null)));
+            fieldInfos.ToList().ForEach(x => {
+                var value = GetMethodInfo.MakeGenericMethod(x.FieldType).Invoke(null, null);
+                x.SetValue(null, value);
+                result[x.Name] = value;
+            });
+            return result;
         }
 
-        public static void AssignArbitraryValues<T>() {
-            AssignArbitraryValues(typeof(T), DefaultNamingScheme.ArbitraryValue);
+        public static IAssignmentReport AssignArbitraryValues<T>() {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            var values = AssignArbitraryValues(typeof(T), DefaultNamingScheme.ArbitraryValue);
+            stopwatch.Stop();
+            var result = new ArbitraryValuesAssignmentReport(values, stopwatch.Elapsed);
+            return result;
         }
 
-        public static void AssignArbitraryValues<T>(String suffix) {
-            AssignArbitraryValues(typeof(T), suffix);
+        public static IDictionary<string, object> AssignArbitraryValues<T>(String suffix) {
+            var result = AssignArbitraryValues(typeof(T), suffix);
+            return result;
         }
 
         //name shouldn't be changed as "GetMethodInfo" depends upon it
@@ -126,6 +139,30 @@ namespace ArbitraryValues {
                 throw new Exception(Messages.BuilderAlreadyAddedForType(type));
             }
             Builders.Add(new BuilderData(type, random => (object)builder(random)));
+        }
+    }
+
+    public interface IAssignmentReport {
+        IDictionary<string, object> Values { get; }
+        void PrintValues();
+    }
+
+    public class ArbitraryValuesAssignmentReport : IAssignmentReport {
+        public ArbitraryValuesAssignmentReport(IDictionary<string, object> values, TimeSpan duration) {
+            Values = values;
+            Duration = duration;
+        }
+
+        public IDictionary<string, object> Values { get; private set; }
+        public TimeSpan Duration { get; private set; }
+
+        public void PrintValues() {
+            var formattedDuration = string.Format("{0:00}:{1:00}:{2:00}.{3:000}", Duration.Hours, Duration.Minutes, Duration.Seconds, Duration.Milliseconds);
+            Console.WriteLine("Foo Arbitrary Value Assignments ({0} values assigned; Processing Time: {1}):", Values.Count, formattedDuration);
+            foreach (var key in Values.Keys) {
+                // todo mlh consider reflecting into DebuggerDisplay attribute to find customized string representation of object
+                Console.WriteLine("{0}: {1}", key, Values[key]);
+            }
         }
     }
 }
